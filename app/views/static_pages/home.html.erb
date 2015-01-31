@@ -1,2 +1,13 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<% provide(:title, "Home") %>
+
+    <!-- Lead -->
+
+    <section class="row-alt">
+      <div class="lead container">
+        <h1><%= full_title(yield(:title), true) %></h1>
+      </div>
+    </section>
+
+	<div class="col-1-3">Menu: <br> Tips,<br> Ticks, <br>List of Places</div><!--
+
+	--><div id="map-canvas" class="col-2-3"></div>

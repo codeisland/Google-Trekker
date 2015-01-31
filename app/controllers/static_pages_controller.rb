@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def request
+  def requestLocation
   end
 
   def help

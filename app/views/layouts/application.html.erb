@@ -1,14 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GoogleTracker</title>
+  <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>  
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP89_ebYuDcoJsqXEYVP5K5Y0d4ktCyQ8">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: { lat: 41.8236, lng: -71.4222},
+          zoom: 10
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 </head>
 <body>
 
-<%= yield %>
+    <!-- Header -->
 
+   <header class="primary-header container group">
+      <h1 class="logo">
+         <%= link_to "Code Island".html_safe, root_path %>
+      </h1>
+      <nav class="nav primary-nav">
+        <ul>
+          <li><%= link_to "Home", root_path %></li><!--
+          --><li><%= link_to "Request", request_path %></li><!--
+          --><li><%= link_to "Help", help_path %></li><!--
+          --><li><%= link_to "About", about_path %></li>
+        </ul>
+      </nav>
+    </header>
+
+	<%= yield %>
+
+    <!-- Footer -->
+
+    <footer class="primary-footer container group">
+
+      <nav class="nav">
+        <ul>
+          <li><%= link_to "Home", root_path %></li><!--
+          --><li><%= link_to "Request", request_path %></li><!--
+          --><li><%= link_to "Help", help_path %></li><!--
+          --><li><%= link_to "About", about_path %></li>
+          <%= image_tag("home/logo_print.png", alt: "Logo") %>
+        </ul>
+      </nav>
+      <div class="logo-top">
+      </div>
+      <div class="logo-center">
+      </div>
+      <div class="logo-bottom">
+      </div>
+      <div class="footer">
+        <p>
+        <span class="screen_only">&copy; Code Island / </span>
+          <%= link_to "Brown University’s TRI Lab at 10 Davol Square, Providence, RI 02903", about_path %>/
+          <%= link_to "info@code-island.com", "mailto:info@code-island.com" %> / (401) XXX-XXXX
+        </p>
+      </div>
+    </footer>
 </body>
 </html>
